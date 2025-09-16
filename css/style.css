@@ -117,11 +117,24 @@ body.fade-in {
   border-bottom: 1px solid #eee;
 }
 
-.logo-wrapper {
+.logo-wrapper a {
   display: flex;
   align-items: center;
   gap: 15px;
+  text-decoration: none;
+  color: inherit;       
+  transition: color 0.3s ease;
 }
+
+.logo-wrapper a:hover .logo-text h1 {
+  color: #d4aa00;
+}
+
+.logo-wrapper a:hover .logo-text p {
+  color: #d4aa00;
+}
+
+
 
 .site-logo {
   height: 90px;
