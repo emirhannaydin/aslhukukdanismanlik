@@ -1,12 +1,10 @@
-// Header yükle
 fetch("components/header.html")
   .then(res => res.text())
   .then(data => {
     document.getElementById("header-include").innerHTML = data;
-    bindFadeLinks(); // header yüklendikten sonra linkleri bağla
+    bindFadeLinks();
   });
 
-// Footer yükle
 fetch("components/footer.html")
   .then(res => res.text())
   .then(data => {
@@ -16,7 +14,6 @@ fetch("components/footer.html")
 document.addEventListener("DOMContentLoaded", function () {
   document.body.classList.add("fade-in");
 
-  // HERO OVERLAY ANİMASYONU
   const heroOverlay = document.querySelector(".hero-overlay");
   if (heroOverlay) {
     setTimeout(() => {
@@ -24,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 300);
   }
 
-  // PAGE HERO OVERLAY ANİMASYONU
   const pageHeroOverlay = document.querySelector(".page-hero-overlay");
   if (pageHeroOverlay) {
     setTimeout(() => {
@@ -32,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 300);
   }
 
-  // FORM DOĞRULAMA
   const form = document.getElementById("homepage-contact-form");
   if (form) {
     form.addEventListener("submit", function (e) {
@@ -57,10 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  bindFadeLinks(); // DOM hazır olunca bir defa da burada çağır
+  bindFadeLinks();
 });
 
-// 👇 Bu fonksiyon hem ilk yüklemede hem header yüklendikten sonra kullanılabilir
 function bindFadeLinks() {
   const links = document.querySelectorAll("a[href]");
   links.forEach(link => {
@@ -80,12 +74,10 @@ function bindFadeLinks() {
   });
 }
 
-// ===== CountUp on view =====
 (function () {
   const items = document.querySelectorAll('.countup');
   if (!items.length) return;
 
-  // Kullanıcı "reduced motion" tercih ediyorsa animasyonu atla
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const animate = (el) => {
@@ -102,7 +94,6 @@ function bindFadeLinks() {
 
     const step = (now) => {
       const progress = Math.min((now - start) / duration, 1);
-      // easeOutQuad
       const eased = 1 - Math.pow(1 - progress, 2);
       const current = Math.floor(startVal + (target - startVal) * eased);
       el.textContent = current + suffix;
@@ -113,7 +104,6 @@ function bindFadeLinks() {
     requestAnimationFrame(step);
   };
 
-  // Ekrana girince tetiklemek için IntersectionObserver
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -128,3 +118,13 @@ function bindFadeLinks() {
 
   items.forEach((el) => io.observe(el));
 })();
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navMenu = document.querySelector(".main-nav ul");
+
+  menuToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("show");
+  });
+});
