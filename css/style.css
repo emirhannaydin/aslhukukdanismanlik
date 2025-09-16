@@ -8,9 +8,17 @@ body {
   font-family: 'Poppins', sans-serif;
   background-color: #fff;
   color: #000;
-  opacity: 0;
   transition: opacity 0.8s ease;
 }
+
+body.fade-out {
+  opacity: 0;
+}
+
+body.fade-in {
+  opacity: 1;
+}
+
 
 /* Header Top */
 .header-top {
@@ -33,23 +41,36 @@ body {
 .contact-left {
   display: flex;
   align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
+  gap: 20px;       /* mail ve telefon arası boşluk */
+  flex-wrap: wrap; /* mobilde alt satıra insin */
 }
 
-.contact-left a {
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;        /* ikon ile yazı arasındaki boşluk */
+}
+
+.contact-item i {
+  color: #7b1515;  /* ikon rengi */
+  font-size: 16px;
+}
+
+.contact-item a {
   color: #555;
   text-decoration: none;
   font-weight: 500;
+  font-size: 0.95rem;
 }
 
 @media screen and (max-width: 768px) {
   .contact-left {
-    flex-direction: column;
+    flex-direction: column; /* mobilde alt alta */
     align-items: flex-start;
-    gap: 8px;
+    gap: 10px;
   }
 }
+
 
 
 .social-icons,
@@ -663,17 +684,6 @@ section {
   }
 }
 
-/* Sayfa geçiş animasyonu */
-body.fade-out {
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
-
-body.fade-in {
-  opacity: 1;
-  transition: opacity 0.8s ease;
-}
-
 /* --- Why Us Section --- */
 .why-us {
   padding: 100px 5%;
@@ -785,27 +795,34 @@ body.fade-in {
 /* Menü butonu varsayılan gizli */
 .menu-toggle {
   display: none;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   background: none;
   border: none;
   color: #300000;
   cursor: pointer;
+  position: relative; /* referans noktası */
+  z-index: 1001; /* menünün üstünde olsun */
 }
 
-
 @media screen and (max-width: 768px) {
+  .main-nav {
+    position: relative;
+    width: 100%;
+  }
+
   .main-nav ul {
-    display: none; /* gizli */
+    display: none;
     flex-direction: column;
     gap: 15px;
     background: #fff;
     position: absolute;
-    top: 70px;
-    right: 20px;
-    border: 1px solid #ddd;
+    top: 100%; /* hamburger ikonunun hemen altına */
+    left: 0;   /* soldan başlasın */
+    width: 100%; /* tam genişlik kaplasın */
+    border-top: 1px solid #ddd;
     padding: 15px;
-    border-radius: 6px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
   }
 
   .main-nav ul.show {
@@ -813,9 +830,12 @@ body.fade-in {
   }
 
   .menu-toggle {
-    display: block; /* sadece mobilde göster */
+    display: block;
+    font-size: 1.8rem;
   }
 }
+
+
 
 
 
