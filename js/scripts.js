@@ -79,3 +79,52 @@ function bindFadeLinks() {
     }
   });
 }
+
+// ===== CountUp on view =====
+(function () {
+  const items = document.querySelectorAll('.countup');
+  if (!items.length) return;
+
+  // Kullanıcı "reduced motion" tercih ediyorsa animasyonu atla
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const animate = (el) => {
+    const target = parseFloat(el.getAttribute('data-target')) || 0;
+    const suffix = el.getAttribute('data-suffix') || '';
+    const duration = 1500; // ms
+    const start = performance.now();
+    const startVal = 0;
+
+    if (prefersReduced) {
+      el.textContent = target + suffix;
+      return;
+    }
+
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      // easeOutQuad
+      const eased = 1 - Math.pow(1 - progress, 2);
+      const current = Math.floor(startVal + (target - startVal) * eased);
+      el.textContent = current + suffix;
+
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target + suffix; // tam değerde bitir
+    };
+    requestAnimationFrame(step);
+  };
+
+  // Ekrana girince tetiklemek için IntersectionObserver
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animate(entry.target);
+          io.unobserve(entry.target); // sadece bir kez çalışsın
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  items.forEach((el) => io.observe(el));
+})();
