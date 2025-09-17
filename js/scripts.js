@@ -72,6 +72,9 @@ function bindFadeLinks() {
       url &&
       !url.startsWith("#") &&
       !url.startsWith("http") &&
+      !url.startsWith("tel:") &&       // Telefon linklerini hariç tut
+      !url.startsWith("mailto:") &&    // Mail linklerini hariç tut
+      !url.startsWith("https://wa.me") && // WhatsApp linklerini hariç tut
       !link.hasAttribute("target")
     ) {
       link.addEventListener("click", function (e) {
@@ -86,6 +89,7 @@ function bindFadeLinks() {
     }
   });
 }
+
 
 // Rakamların artış animasyonu (countup)
 (function () {
@@ -149,4 +153,20 @@ function initMenuToggle() {
 document.addEventListener("DOMContentLoaded", () => {
   initMenuToggle();
 });
+
+// Accordion
+    document.addEventListener("DOMContentLoaded", () => {
+      const questions = document.querySelectorAll(".faq-question");
+      questions.forEach(q => {
+        q.addEventListener("click", () => {
+          q.classList.toggle("active");
+          const answer = q.nextElementSibling;
+          if (answer.style.maxHeight) {
+            answer.style.maxHeight = null;
+          } else {
+            answer.style.maxHeight = answer.scrollHeight + "px";
+          }
+        });
+      });
+    });
 

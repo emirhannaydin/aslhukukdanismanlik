@@ -730,6 +730,16 @@ section {
   min-width: 300px;
 }
 
+.why-us .why-left h2 {
+  color: #d4aa00;           
+}
+
+.why-us .why-item h3{
+    color: #f5e6c8;          
+
+}
+
+
 .section-subtitle {
   font-size: 0.9rem;
   color: #d4aa00;
@@ -846,6 +856,87 @@ section {
     display: block;
     font-size: 1.8rem;
   }
+}
+
+.founder-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #7b1515; /* tema rengine göre ayarlayabilirsin */
+  margin: -8px 0 10px; /* başlığa yakın olsun diye */
+}
+
+
+.faq-section {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.faq-section h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #300000;
+  font-size: 2rem;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.faq-box {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+
+.faq-box:hover {
+  transform: translateY(-3px);
+}
+
+.faq-box h2 {
+  margin-bottom: 15px;
+  color: #7b1515;
+  font-size: 1.3rem;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 8px;
+}
+
+.faq-item {
+  margin: 10px 0;
+}
+
+.faq-question {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.faq-question:hover {
+  color: #7b1515;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.faq-answer p {
+  padding: 5px 0 10px 0;
+  color: #555;
+  line-height: 1.6;
 }
 
 
